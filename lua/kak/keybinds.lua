@@ -5,20 +5,15 @@ local utils = require("kak.utils")
 function M.setup(opts)
   local opts = opts or {}
 
-  -- Word motions with reselect behavior
+  -- Only set up word motions with reselect behavior in NORMAL mode
   local word = { "w", "e", "b" }
-  utils.keymap.set(word, { presets = { "reselect" } })
-
-  -- All basic movements exit visual mode (no extending selections)
-  local movement = { "h", "j", "k", "l" }
-  utils.keymap.set(movement, { presets = { "deselect" } })
-
-  -- Keep the normal mode operators
-  for _, key in ipairs({ "d", "c", "y" }) do
-    vim.keymap.set({ "n" }, key, "v" .. key)
+  for _, key in ipairs(word) do
+    vim.keymap.set("n", key, "v" .. key .. "<Esc>", { noremap = true })
   end
-  
-  vim.keymap.set({ "n", "x" }, "x", "V")
-end
+
+  -- Normal mode operators: select, then act
+  for _, key in ipairs({ "d", "c", "y" }) do
+    vim.keymap.set("n", key, "v" .. key, { noremap = true })
+  end
 
 return M
