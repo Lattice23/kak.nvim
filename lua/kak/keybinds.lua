@@ -12,8 +12,11 @@ function M.setup(opts)
   local movement = { "h", "j", "k", "l" }
   utils.keymap.set(movement, { presets = { "deselect" } })
   
-  -- Implement v key with deselect behavior
-  utils.keymap.set("v", { presets = { "deselect" } })
+  -- Alternative movement keys that work normally in visual mode
+  vim.keymap.set("x", "<C-h>", "h")  
+  vim.keymap.set("x", "<C-j>", "j")  
+  vim.keymap.set("x", "<C-k>", "k")  
+  vim.keymap.set("x", "<C-l>", "l")  
   
   -- Keep the normal mode operators
   for _, key in ipairs({ "d", "c", "y" }) do
