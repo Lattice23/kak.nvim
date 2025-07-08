@@ -23,11 +23,6 @@ function M.setup(opts)
       vim.keymap.set("x", "i", "<Esc>`<i")
       vim.keymap.set("x", "a", "<Esc>`>a")
     end
-
-  -- Keep the normal mode operators
-  for _, key in ipairs({ "d", "c", "y" }) do
-    vim.keymap.set({ "n" }, key, "v" .. key)
-  end
 end
 
 return M
