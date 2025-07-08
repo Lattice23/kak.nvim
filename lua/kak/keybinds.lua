@@ -16,8 +16,14 @@ function M.setup(opts)
   vim.keymap.set("x", "<C-h>", "h")  
   vim.keymap.set("x", "<C-j>", "j")  
   vim.keymap.set("x", "<C-k>", "k")  
-  vim.keymap.set("x", "<C-l>", "l")  
-  
+  vim.keymap.set("x", "<C-l>", "l")
+
+  -- Experimemtal features
+  if opts.experimental.rebind_visual_aiAI then
+      vim.keymap.set("x", "i", "<Esc>`<i")
+      vim.keymap.set("x", "a", "<Esc>`>a")
+    end
+
   -- Keep the normal mode operators
   for _, key in ipairs({ "d", "c", "y" }) do
     vim.keymap.set({ "n" }, key, "v" .. key)
