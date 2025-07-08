@@ -15,5 +15,5 @@ function M.setup(opts)
   for _, key in ipairs({ "d", "c", "y" }) do
     vim.keymap.set("n", key, "v" .. key, { noremap = true })
   end
-
+end
 return M
